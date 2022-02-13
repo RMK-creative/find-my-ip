@@ -6,7 +6,7 @@ export default function CountryInfo(props) {
   // console.log(countryCode);
   // console.log(countryData);
 
-  console.log(DateTime.now());
+  // console.log(DateTime.now());
 
   return (
     <section>
