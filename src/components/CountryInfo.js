@@ -13,12 +13,12 @@ export default function CountryInfo(props) {
         <>
           <div className="country-title">
             <img
-              src={`https://flagcdn.com/112x84/${countryCode.toLowerCase()}.png`}
-              width="112"
-              height="84"
+              src={`https://flagcdn.com/72x54/${countryCode.toLowerCase()}.png`}
+              width="72"
+              height="54"
               alt={countryData.name.common}
             ></img>
-            <h2>{countryData.name.official}</h2>
+            <h2>{countryData.name.common}</h2>
           </div>
 
           <div className="country-data">

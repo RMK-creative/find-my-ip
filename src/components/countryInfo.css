@@ -2,15 +2,18 @@
   margin-top: 2rem;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 4rem;
   width: 100%;
   line-height: 1;
 }
 
 .country-title {
-  font-size: 1rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
 }
 
 .country-data {
   text-align: left;
+  font-size: 13px;
 }

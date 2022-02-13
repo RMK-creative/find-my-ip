@@ -14,21 +14,28 @@
   color: rgb(10, 75, 116);
 }
 
+.subheading {
+  font-size: 1rem;
+}
+
 .ip-detail {
   border: 1px solid rgb(135, 135, 135);
   border-radius: 1rem;
-  min-width: 40%;
+  min-width: 400px;
   text-align: center;
   align-self: center;
   position: absolute;
-  top: 2rem;
+  top: 6rem;
   background-color: #fff;
   z-index: 5;
+  font-size: 0.875rem;
+  overflow: hidden;
 }
 
 .ip-facts {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-content: center;
   flex-wrap: wrap;
   max-height: 4rem;
@@ -36,6 +43,13 @@
 }
 
 .ip-facts li {
-  margin-right: 4rem;
+  margin-right: 1rem;
   list-style: none;
+}
+
+@media screen and (min-width: 600px) {
+  .ip-detail {
+    max-width: 500px;
+    top: 3.5rem;
+  }
 }
