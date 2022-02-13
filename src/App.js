@@ -7,39 +7,59 @@ import CountryInfo from "./components/CountryInfo";
 function App() {
   const [location, setLocation] = useState("");
   const [ipAddress, setIpAddress] = useState("");
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  const [lat, setLat] = useState([]);
+  const [lng, setLng] = useState([]);
   const [countryData, setCountryData] = useState("");
+  const [countryCode, setCountryCode] = useState("");
+  const [timezone, setTimezone] = useState("");
 
   useEffect(() => {
-    getIP();
-    getCountryInfo();
+    getLocationData();
   }, []);
 
-  function getIP() {
-    axios
-      .get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_IPIFY_KEY}`
-      )
-      .then((res) => {
-        // console.log(res.data.location);
-        setLocation(res.data.location);
-        setIpAddress(res.data.ip);
-        setLat(res.data.location.lat);
-        setLng(res.data.location.lng);
-      })
-      .catch((err) => console.log("err", err));
-  }
+  const getLocationData = () => {
+    getIP().then((countryCode) => {
+      getCountryInfo(countryCode);
+    });
+  };
 
-  function getCountryInfo() {
-    axios
-      .get(`https://restcountries.com/v3.1/alpha/${location.country}`)
-      .then((res) => {
-        // console.log(res.data[0]);
-        setCountryData(res.data[0]);
-      })
-      .catch((err) => console.log("err", err));
-  }
+  const getIP = async () => {
+    return new Promise((getCountryCode) => {
+      try {
+        axios
+          .get(
+            `https://geo.ipify.org/api/v2/country,city?apiKey=${process.env.REACT_APP_IPIFY_KEY}`
+          )
+          .then((res) => {
+            // console.log("get IP res", res);
+            setLocation(res.data.location);
+            setIpAddress(res.data.ip);
+            setLat(res.data.location.lat);
+            setLng(res.data.location.lng);
+            // setTimezone(res.data.timezones[0]);
+            getCountryCode(res.data.location.country);
+          });
+      } catch (error) {
+        console.log("err", error);
+      }
+    });
+  };
+
+  const getCountryInfo = async (countryCode) => {
+    try {
+      const resp = await axios
+        .get(`https://restcountries.com/v3.1/alpha/${countryCode}`)
+        .then((res) => {
+          // console.log("CountryInfo", res);
+          setCountryData(res.data[0]);
+          setCountryCode(countryCode);
+        });
+    } catch (error) {
+      console.log("err", error);
+    }
+  };
+
+  // console.log(timezone);
 
   return (
     <div className="App">
@@ -58,10 +78,10 @@ function App() {
         <p>Loading...</p>
       )}
       <div>
-        <MyMap lat={lat} lng={lng} />
+        <MyMap lat={lat} lng={lng} countryData={countryData} />
       </div>
       <div>
-        <CountryInfo countryData={countryData} />
+        <CountryInfo countryData={countryData} countryCode={countryCode} />
       </div>
     </div>
   );

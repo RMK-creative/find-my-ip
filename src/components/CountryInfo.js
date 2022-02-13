@@ -1,29 +1,37 @@
 import React from "react";
-import { DateTime } from "luxon";
+import { DateTime, FixedOffsetZone } from "luxon";
 
 export default function CountryInfo(props) {
-  const { countryData } = props;
-  let countryCode = countryData.cca2.toLowerCase();
-  // console.log(countryData.cca2);
-  // console.log(instance(offset: number): FixedOffsetZone)
+  const { countryData, countryCode } = props;
+  // console.log(countryCode);
+  // console.log(countryData);
+
+  console.log(DateTime.now());
 
   return (
     <section>
-      <h2>{countryData.name.official}</h2>
-      <div>
-        <img
-          src={`https://flagcdn.com/40x30/${countryCode}.png`}
-          srcset={`https://flagcdn.com/40x30/${countryCode}.png 2x,
-    https://flagcdn.com/72x54/${countryCode}.png 3x`}
-          width="80"
-          height="50"
-          alt="flag"
-        />
-      </div>
-      <div>
-        <p>Continent: {countryData.region}</p>
-        <p>Population: {countryData.population}</p>
-      </div>
+      {countryData && (
+        <>
+          <img
+            src={`https://flagcdn.com/28x21/${countryCode.toLowerCase()}.png`}
+            width="55"
+            height="41"
+            alt={countryData.name.common}
+          ></img>
+          <h2>{countryData.name.official}</h2>
+          <div></div>
+          <div>
+            <p>Continent: {countryData.region}</p>
+            <p>Population: {countryData.population}</p>
+            <p>Capital: {countryData.capital[0]}</p>
+            <p>
+              Currency: {countryData.currencies.EUR.name}
+              <span> {countryData.currencies.EUR.symbol}</span>
+            </p>
+            <p>Timezone: {countryData.timezones[0]}</p>
+          </div>
+        </>
+      )}
     </section>
   );
 }
