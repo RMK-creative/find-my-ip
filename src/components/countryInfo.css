@@ -1,0 +1,16 @@
+.country-info {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  width: 100%;
+  line-height: 1;
+}
+
+.country-title {
+  font-size: 1rem;
+}
+
+.country-data {
+  text-align: left;
+}

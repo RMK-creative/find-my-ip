@@ -1,26 +1,27 @@
 import React from "react";
+import "./countryInfo.css";
 import { DateTime, FixedOffsetZone } from "luxon";
 
 export default function CountryInfo(props) {
   const { countryData, countryCode } = props;
-  // console.log(countryCode);
-  // console.log(countryData);
 
   // console.log(DateTime.now());
 
   return (
-    <section>
+    <section className="section country-info">
       {countryData && (
         <>
-          <img
-            src={`https://flagcdn.com/28x21/${countryCode.toLowerCase()}.png`}
-            width="55"
-            height="41"
-            alt={countryData.name.common}
-          ></img>
-          <h2>{countryData.name.official}</h2>
-          <div></div>
-          <div>
+          <div className="country-title">
+            <img
+              src={`https://flagcdn.com/112x84/${countryCode.toLowerCase()}.png`}
+              width="112"
+              height="84"
+              alt={countryData.name.common}
+            ></img>
+            <h2>{countryData.name.official}</h2>
+          </div>
+
+          <div className="country-data">
             <p>Continent: {countryData.region}</p>
             <p>Population: {countryData.population}</p>
             <p>Capital: {countryData.capital[0]}</p>
@@ -28,7 +29,6 @@ export default function CountryInfo(props) {
               Currency: {countryData.currencies.EUR.name}
               <span> {countryData.currencies.EUR.symbol}</span>
             </p>
-            <p>Timezone: {countryData.timezones[0]}</p>
           </div>
         </>
       )}

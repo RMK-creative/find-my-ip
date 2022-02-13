@@ -63,23 +63,28 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Find my IP</h1>
-      {location ? (
-        <ul>
-          <li>IP: {ipAddress}</li>
-          <li>Country: {location.country}</li>
-          <li>Region: {location.region}</li>
-          <li>City: {location.city}</li>
-          <li>Timezone: {location.timezone}</li>
-          <li>Latitude: {lat}</li>
-          <li>Longitude: {lng}</li>
-        </ul>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h1 className="heading">Find my IP</h1>
+      <section className="section ip-detail">
+        {location ? (
+          <div>
+            <h2 className="subheading">IP: {ipAddress}</h2>
+            <ul className="ip-facts">
+              <li>Country: {location.country}</li>
+              <li>Region: {location.region}</li>
+              <li>City: {location.city}</li>
+              <li>Timezone: {location.timezone}</li>
+              <li>Latitude: {lat}</li>
+              <li>Longitude: {lng}</li>
+            </ul>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </section>
       <div>
         <MyMap lat={lat} lng={lng} countryData={countryData} />
       </div>
+
       <div>
         <CountryInfo countryData={countryData} countryCode={countryCode} />
       </div>
