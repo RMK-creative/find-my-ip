@@ -9,13 +9,14 @@ export default function CountryInfo(props) {
 
   return (
     <section className="section country-info">
+      <h2>Information about your current location</h2>
       {countryData && (
-        <>
-          <div className="country-title">
+        <section className="country-facts">
+          <div className="country-name">
             <img
-              src={`https://flagcdn.com/72x54/${countryCode.toLowerCase()}.png`}
-              width="72"
-              height="54"
+              src={`https://flagcdn.com/40x30/${countryCode.toLowerCase()}.png`}
+              width="40"
+              height="30"
               alt={countryData.name.common}
             ></img>
             <h2>{countryData.name.common}</h2>
@@ -30,7 +31,7 @@ export default function CountryInfo(props) {
               <span> {countryData.currencies.EUR.symbol}</span>
             </p>
           </div>
-        </>
+        </section>
       )}
     </section>
   );

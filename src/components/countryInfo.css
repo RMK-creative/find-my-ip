@@ -1,15 +1,26 @@
 .country-info {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 4rem;
   width: 100%;
   line-height: 1;
 }
 
-.country-title {
-  margin-top: 1rem;
+.country-facts {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.country-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  /* margin-top: 3rem; */
   font-size: 0.875rem;
 }
 
